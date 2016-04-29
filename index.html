@@ -1,0 +1,163 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>对比</title>
+<link rel="stylesheet" href="bootstrap-3.3.5-dist/css/bootstrap.min.css"/>
+<style type="text/css">
+	#table_one{
+	width: 300px;
+	position: absolute;
+	top: 60px;
+	left: 20px;
+}
+#table_two{
+	width: 300px;
+	position: absolute;
+	top: 60px;
+	left: 400px;
+}
+#table_three{
+	width: 300px;
+	position: absolute;
+	top: 300px;
+	left: 200px;
+}
+</style>
+<script type="text/javascript">
+/**
+在两个表格结构相同的情况下：
+ 
+设表1的ID，也就是table标签的ID为“table1”;
+表2的ID为table2;
+**/
+function testTable(){
+    var t1 = document.getElementById('table_one');
+    var t2 = document.getElementById('table_two');
+    var tRows = t1.rows.length;
+    var tCells = t1.rows[1].cells.length;
+    for(var i=1; i<tRows; i++){
+        for(var p=0; p<tCells; p++){
+            if(t1.rows[i].cells[p].innerHTML != t2.rows[i].cells[p].innerHTML){
+                t2.rows[i].style.backgroundColor = '#F00';
+                t1.rows[i].style.backgroundColor = '#F00';
+            }
+        }
+    }
+}
+function testList(tt){
+	var t1 = document.getElementById('table_one');
+    var t2 = document.getElementById('table_two');
+    var t3 = document.getElementById('table_three');
+    var tRows = t1.rows.length;
+    var tCells = t1.rows[1].cells.length;
+	for(var i=1; i<tRows; i++){
+        for(var p=0; p<tCells; p++){
+            if(t1.rows[i].cells[p].innerHTML != t2.rows[i].cells[p].innerHTML){
+            var oTbody = document.getElementById("tb");
+			var oTr = document.createElement("tr");
+			var oTd1 = document.createElement("td");
+			oTd1.innerHTML=t2.rows[i].cells[0].innerHTML;
+			oTr.appendChild(oTd1);
+			var oTd2 = document.createElement("td");
+			oTd2.innerHTML = t2.rows[0].cells[p].innerHTML;
+			oTr.appendChild(oTd2);
+			var oTd3 = document.createElement("td");
+			oTd3.innerHTML = t2.rows[i].cells[p].innerHTML;
+			oTr.appendChild(oTd3);
+			var oTd4 = document.createElement("td");
+			oTd4.innerHTML = t1.rows[i].cells[p].innerHTML;
+			oTr.appendChild(oTd4);
+			oTbody.appendChild(oTr);
+            }
+        }
+    }
+    tt.disabled = true;
+}
+</script>
+</head>
+<body>
+            <table id="table_one" class="table table-striped table-bordered" >
+                <thead>
+                <tr>
+                    <th>商品编码</th>
+                    <th>名称</th>
+                    <th>规格</th>
+                    <th>产地</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                	<td>0001</td>
+                	<td>qq</td>
+                	<td>1</td>
+                	<td>1</td>
+                </tr>
+                <tr>
+                	<td>0002</td>
+                	<td>qq</td>
+                	<td>1</td>
+                	<td>1</td>
+                </tr>
+                 <tr>
+                	<td>0003</td>
+                	<td>qq</td>
+                	<td>1</td>
+                	<td>1</td>
+                </tr>
+                <tbody>              
+                </tbody>
+            </table>
+             <table id="table_two" class="table table-striped table-bordered" >
+                <thead>
+                <tr>
+                    <th>商品编码</th>
+                    <th>名称</th>
+                    <th>规格</th>
+                    <th>产地</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                	<td>0001</td>
+                	<td>qq</td>
+                	<td>1</td>
+                	<td>1</td>
+                </tr>
+                <tr>
+                	<td>0002</td>
+                	<td>qq</td>
+                	<td>1</td>
+                	<td>2</td>
+                </tr>
+                <tr>
+                	<td>0003</td>
+                	<td>ww</td>
+                	<td>1</td>
+                	<td>1</td>
+                </tr>
+                <tbody>              
+                </tbody>
+            </table>
+            <table id="table_three" class="table table-striped table-bordered" >
+                <thead>
+                <tr>
+                    <th>商品编码</th>
+                    <th>错误项目</th>
+                    <th>原订单</th>
+                    <th>实际信息</th>
+                </tr>
+                </thead>
+                <tbody id="tb">
+                <tbody>              
+                </tbody>
+            </table>
+            <input type="button" value="检测" onClick="testTable()" />
+            <input type="button" value="错误清单" onClick="testList(this)"/>
+
+  <script src="jquery-1.10.2.min.js"></script>
+  <script src="bootstrap-3.3.5-dist/js/bootstrap.min.js"></script> 
+</body>
+<footer><p></p></footer>
+<link rel="stylesheet" href="css/main.css">
+</html>
